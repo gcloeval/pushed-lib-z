@@ -25,7 +25,7 @@ export function getOrCreateStore(initialState?: MainRootState) {
   return (window as any)[__NEXT_REDUX_STORE__]
 }
 
-//TODO - reactotron for dev only
+// TODO - reactotron for dev only
 function initializeStore(
   // history: History,
   initialState?: MainRootState
@@ -37,8 +37,8 @@ function initializeStore(
   } else {
     if (__DEV__) {
       console.log('----IN DEV MODE, adding reactatrong')
-      var Reactotron = require('reactotron-react-js').default
-      var { reactotronRedux } = require('reactotron-redux')
+      const Reactotron = require('reactotron-react-js').default
+      const { reactotronRedux } = require('reactotron-redux')
       const tron = Reactotron.configure()
         .use(reactotronRedux())
         .connect()
