@@ -1,6 +1,6 @@
 {
   "name": "pushed-lib-z",
-  "version": "0.0.0-semantically-released",
+  "version": "1.0.0",
   "description": "",
   "keywords": [],
   "main": "dist/pushed-lib-z.umd.js",
