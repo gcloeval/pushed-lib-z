@@ -144,7 +144,9 @@ export function useInitCheck(
   if (initValue) {
     if (!isInitialized) {
       if (__DEV__) {
-        console.log('debug uesInitCheck = object never before inited, so applying now...=')
+        console.log(
+          'debug uesInitCheck = object never before inited, lib tester so applying now...='
+        )
       }
       setterFunction()
       filterInitRef.current.alreadyInitialized = true
