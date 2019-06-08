@@ -8,7 +8,7 @@ const initialState: DataState = {
 }
 export default function(state: DataState = initialState, action: QueryAction) {
   if (__DEV__) {
-    console.log('Testing usage of __DEV__ only, processing action:', JSON.stringify(action))
+    console.log('Testing usage of DEV__ only, processing action:', JSON.stringify(action))
   }
 
   return produce(state, draft => {

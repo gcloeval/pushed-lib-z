@@ -1,3 +1,5 @@
+import { DEFAULT_EXTENSIONS } from '@babel/core'
+
 import resolve from 'rollup-plugin-node-resolve'
 import commonjs from 'rollup-plugin-commonjs'
 import sourceMaps from 'rollup-plugin-sourcemaps'
@@ -5,10 +7,40 @@ import camelCase from 'lodash.camelcase'
 import typescript from 'rollup-plugin-typescript2'
 import json from 'rollup-plugin-json'
 import autoExternal from 'rollup-plugin-auto-external'
-
+import babel from 'rollup-plugin-babel'
+import replace from 'rollup-plugin-replace'
 const pkg = require('./package.json')
 
 const libraryName = 'pushed-lib-z'
+
+// const replacements = [{ original: 'lodash', replacement: 'lodash-es' }];
+
+// const babelOptions = (format: 'cjs' | 'es' | 'umd', target: 'node' | 'browser') => ({
+//   exclude: 'node_modules/**',
+//   extensions: [...DEFAULT_EXTENSIONS, 'ts', 'tsx'],
+//   passPerPreset: true, // @see https://babeljs.io/docs/en/options#passperpreset
+//   presets: [
+//     [
+//       require.resolve('@babel/preset-env'),
+//       {
+//         loose: true,
+//         modules: false,
+//         targets: target === 'node' ? { node: '8' } : undefined,
+//         exclude: ['transform-async-to-generator']
+//       }
+//     ]
+//   ],
+//   plugins: [
+//     require.resolve('babel-plugin-annotate-pure-calls'),
+//     require.resolve('babel-plugin-dev-expression'),
+//     format !== 'cjs' && [require.resolve('babel-plugin-transform-rename-import'), { replacements }],
+//     [
+//       require.resolve('babel-plugin-transform-async-to-promises'),
+//       { inlineHelpers: true, externalHelpers: true }
+//     ],
+//     [require.resolve('@babel/plugin-proposal-class-properties'), { loose: true }]
+//   ].filter(Boolean)
+// })
 
 export default {
   // input: `src/${libraryName}.ts`,
@@ -25,6 +57,7 @@ export default {
   plugins: [
     // Allow json resolution
     json(),
+
     // Compile TypeScript files
     typescript({ useTsconfigDeclarationDir: true }),
     // Allow bundling cjs modules (unlike webpack, rollup doesn't understand cjs)
@@ -36,6 +69,11 @@ export default {
     // resolve(),
 
     // Resolve source maps to the original source
-    sourceMaps()
+    sourceMaps(),
+
+    // prettier-ignore
+    replace({
+      '__DEV__': "process.env.NODE_ENV !== 'production'"
+    })
   ]
 }
