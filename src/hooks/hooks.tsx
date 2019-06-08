@@ -145,7 +145,7 @@ export function useInitCheck(
     if (!isInitialized) {
       if (__DEV__) {
         console.log(
-          'debug uesInitCheckx = X increse object never before inited, lib tester adsfso applying now...='
+          'debug uesInitCheckxasdfsa = X increse object never before inited, lib tester adsfso applying now...='
         )
       }
       setterFunction()
