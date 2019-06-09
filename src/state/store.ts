@@ -30,31 +30,36 @@ function initializeStore(
   // history: History,
   initialState?: MainRootState
 ): Store<MainRootState> {
-  console.log('INIT STORE with change=', initialState)
-
-  if (isServer) {
-    return createStore(rootReducer, initialState as any, applyMiddleware(thunk))
-  } else {
-    if (__DEV__) {
-      console.log('----IN DEV MODE, adding reactatrong')
-      const Reactotron = require('reactotron-react-js').default
-      const { reactotronRedux } = require('reactotron-redux')
-      const tron = Reactotron.configure()
-        .use(reactotronRedux())
-        .connect()
-      const reactatronEnhancer = (tron as any).createEnhancer()
-
-      // const composedEnhancers = compose(applyMiddleware(thunk))
-      const composedEnhancers = compose(
-        reactatronEnhancer,
-        applyMiddleware(thunk)
-      )
-      // return createStore(rootReducer, initialState, composedEnhancers as any)
-      return createStore(rootReducer, initialState as any, composedEnhancers as any)
-    } else {
-      console.log('----PROD MODE, skipping reactatron')
-      const composedEnhancers = compose(applyMiddleware(thunk))
-      return createStore(rootReducer, initialState, composedEnhancers as any)
-    }
+  if (__DEV__) {
+    console.log('Dev warning - initializing store, initial state=', initialState)
   }
+
+  // const composedEnhancers = compose(applyMiddleware(thunk))
+  return createStore(rootReducer, initialState as any, applyMiddleware(thunk))
+
+  // if (isServer) {
+  //   return createStore(rootReducer, initialState as any, applyMiddleware(thunk))
+  // } else {
+  // if (__DEV__) {
+  //   console.log('----IN DEV MODE, adding reactatrong')
+  //   const Reactotron = require('reactotron-react-js').default
+  //   const { reactotronRedux } = require('reactotron-redux')
+  //   const tron = Reactotron.configure()
+  //     .use(reactotronRedux())
+  //     .connect()
+  //   const reactatronEnhancer = (tron as any).createEnhancer()
+
+  //   // const composedEnhancers = compose(applyMiddleware(thunk))
+  //   const composedEnhancers = compose(
+  //     reactatronEnhancer,
+  //     applyMiddleware(thunk)
+  //   )
+  //   // return createStore(rootReducer, initialState, composedEnhancers as any)
+  //   return createStore(rootReducer, initialState as any, composedEnhancers as any)
+  // } else {
+  //   console.log('----PROD MODE, skipping reactatron')
+  //   const composedEnhancers = compose(applyMiddleware(thunk))
+  //   return createStore(rootReducer, initialState, composedEnhancers as any)
+  // }
+  // }
 }
