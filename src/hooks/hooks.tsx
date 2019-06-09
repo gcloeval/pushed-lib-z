@@ -28,6 +28,7 @@ export function HooksProvider(props: HooksProviderProps) {
   } else {
     store = getOrCreateStore()
   }
+  console.log('Hooks provider initialized with store=', store.getState())
   return <Provider store={store}>{props.children}</Provider>
 }
 
@@ -94,8 +95,10 @@ export function useRequest(
   initDeps?: any[]
 ): { requestClient: RequestClient } {
   const store = useStore()
+  console.log('in use request hook,s tore=', store)
 
   const state = store.getState()
+  console.log('in use request hook,s state=', state)
   console.error('process.env.NODE_ENV', process.env.NODE_ENV)
 
   console.log('testing invariant inside hook')
@@ -104,6 +107,8 @@ export function useRequest(
   console.log('done with hook invriant')
 
   const lookupFunction = (): any => {
+    console.error('TRIGGERED lookupFunction FUNCTION, requestId=', requestId)
+    console.error('TRIGGERED lookupFunction FUNCTION, state=', store.getState())
     const lookedUp = getRequestById(requestId, store.getState())
     return lookedUp
   }

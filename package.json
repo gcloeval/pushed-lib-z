@@ -98,6 +98,7 @@
     "coveralls": "^3.0.2",
     "cross-env": "^5.2.0",
     "cz-conventional-changelog": "^2.1.0",
+    "duplicate-package-checker-webpack-plugin": "^3.0.0",
     "husky": "^1.0.1",
     "jest": "^23.6.0",
     "jest-config": "^23.6.0",
@@ -108,6 +109,7 @@
     "replace-in-file": "^3.4.2",
     "rimraf": "^2.6.2",
     "rollup": "^1.14.3",
+    "rollup-plugin-analyzer": "^3.0.1",
     "rollup-plugin-auto-external": "^2.0.0",
     "rollup-plugin-babel": "^4.3.2",
     "rollup-plugin-commonjs": "^9.1.8",
@@ -117,6 +119,7 @@
     "rollup-plugin-sourcemaps": "^0.4.2",
     "rollup-plugin-terser": "^5.0.0",
     "rollup-plugin-typescript2": "^0.18.0",
+    "rollup-plugin-visualizer": "^1.1.1",
     "semantic-release": "^15.13.12",
     "shelljs": "^0.8.3",
     "travis-deploy-once": "^5.0.9",
@@ -139,7 +142,7 @@
     "typesafe-actions": "^4.4.0"
   },
   "peerDependencies": {
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6"
+    "react": "^16.8.3",
+    "react-dom": "^16.8.3"
   }
 }

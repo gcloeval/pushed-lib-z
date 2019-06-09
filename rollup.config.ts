@@ -9,6 +9,8 @@ import json from 'rollup-plugin-json'
 import autoExternal from 'rollup-plugin-auto-external'
 import babel from 'rollup-plugin-babel'
 import replace from 'rollup-plugin-replace'
+import visualizer from 'rollup-plugin-visualizer'
+import analyze from 'rollup-plugin-analyzer'
 const pkg = require('./package.json')
 
 const libraryName = 'pushed-lib-z'
@@ -59,7 +61,7 @@ export default {
     json(),
 
     // Compile TypeScript files
-    typescript({ useTsconfigDeclarationDir: true }),
+    typescript({ clean: true, useTsconfigDeclarationDir: true }),
     // Allow bundling cjs modules (unlike webpack, rollup doesn't understand cjs)
     commonjs(),
     // Allow node_modules resolution, so you can use 'external' to control
@@ -74,6 +76,12 @@ export default {
     // prettier-ignore
     replace({
       '__DEV__': "process.env.NODE_ENV !== 'production'"
-    })
+    }),
+    // visualizer({
+    //   filename: './statistics.html',
+    //   title: 'My Bundle',
+    //   open: true
+    // }),
+    analyze()
   ]
 }
