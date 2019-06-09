@@ -24,8 +24,8 @@ export const execRequest = (requestId: string) => {
     }
     console.log('exec request state=', JSON.stringify(state))
     warning(
-      !state.esDsl.requests[requestId],
-      `Invalid request id: ${requestId} - cannot found in state`
+      state.esDsl.requests[requestId] === undefined,
+      `WARNING - Invalid request id: ${requestId} - cannot found in state. Nothing to execute...`
     )
     console.log('not this invariant')
 
