@@ -99,7 +99,8 @@ export function useRequest(
   console.error('process.env.NODE_ENV', process.env.NODE_ENV)
 
   console.log('testing invariant inside hook')
-  invariant(state === undefined, 'why no message')
+  warning(state === undefined, 'State is undefined...why?')
+  // invariant(state === undefined, 'why no message')
   console.log('done with hook invriant')
 
   const lookupFunction = (): any => {
