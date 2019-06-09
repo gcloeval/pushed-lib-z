@@ -3,7 +3,7 @@ import { MainRootState, Filter } from './../types'
 import { action } from 'typesafe-actions'
 import { RequestData, ResponseData } from '../types'
 import axios, { AxiosRequestConfig } from 'axios'
-import { warning } from 'tiny-warning'
+import warning from 'tiny-warning'
 export const setRequest = (requestId: string, config: RequestData) =>
   action('SET_REQUEST', { requestId, config })
 
