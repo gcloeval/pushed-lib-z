@@ -31,7 +31,7 @@ function initializeStore(
   initialState?: MainRootState
 ): Store<MainRootState> {
   if (__DEV__) {
-    console.log('Dev warning - initializing store, initial state=', initialState)
+    console.log('Dev warning - initializing storeasdf, initial state=', initialState)
   }
 
   // const composedEnhancers = compose(applyMiddleware(thunk))
