@@ -105,8 +105,6 @@
     "lodash.camelcase": "^4.3.0",
     "prettier": "^1.14.3",
     "prompt": "^1.0.0",
-    "reactotron-react-js": "^3.3.1",
-    "reactotron-redux": "^3.1.1",
     "replace-in-file": "^3.4.2",
     "rimraf": "^2.6.2",
     "rollup": "^1.14.3",
@@ -141,8 +139,7 @@
     "typesafe-actions": "^4.4.0"
   },
   "peerDependencies": {
-    "prop-types": "^15.5.4",
-    "react": "^15.0.0 || ^16.0.0",
-    "react-dom": "^15.0.0 || ^16.0.0"
+    "react": "^16.8.0",
+    "react-dom": "^16.8.0"
   }
 }
