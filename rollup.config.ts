@@ -11,6 +11,9 @@ import babel from 'rollup-plugin-babel'
 import replace from 'rollup-plugin-replace'
 import visualizer from 'rollup-plugin-visualizer'
 import analyze from 'rollup-plugin-analyzer'
+import { terser } from 'rollup-plugin-terser'
+import rollupGrapher from 'rollup-plugin-grapher'
+
 const pkg = require('./package.json')
 
 const libraryName = 'pushed-lib-z'
@@ -83,5 +86,7 @@ export default {
     //   open: true
     // }),
     analyze()
+    // rollupGrapher()
+    // terser()
   ]
 }

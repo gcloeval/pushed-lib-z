@@ -21,7 +21,7 @@ export default function(state: DataState = initialState, action: QueryAction) {
           'below should be a dev-only warning invariant about first-ever request creation'
         )
         warning(
-          !draft.requests[requestId],
+          draft.requests[requestId],
           `Variant warning test - first ever trying to create request for id=${requestId}`
         )
 
@@ -42,13 +42,22 @@ export default function(state: DataState = initialState, action: QueryAction) {
         }
 
         invariant(
-          filter.id === 'special_id',
+          filter.id !== 'special_id',
           `Throwing on purposes via invariant for filter ${filter.id}`
         )
 
         draft.requests[requestId].filters![filter.id] = filter
         return
       }
+
+      case 'PROCESS_RESPONSE': {
+        const { requestId, response } = action.payload
+        validateRequestExistsInDraft(requestId, draft)
+
+        draft.responses[requestId] = response
+        return
+      }
+
       default:
         return
     }
@@ -56,14 +65,14 @@ export default function(state: DataState = initialState, action: QueryAction) {
 }
 export function validateRequestExistsInDraft(requestId: string, draft: Draft<DataState>) {
   invariant(
-    !draft.requests[requestId],
+    draft.requests[requestId] !== undefined,
     `Trying to modify non-existing request with requestId = ${requestId}. Did you forget to initialize request first?`
   )
 }
 
 export function validateRequestExistsInState(requestId: string, state: MainRootState) {
   invariant(
-    !state.esDsl.requests[requestId],
+    state.esDsl.requests[requestId] !== undefined,
     `Invalid request id: ${requestId} - cannot found in state`
   )
 }

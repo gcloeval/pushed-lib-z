@@ -2,8 +2,9 @@ import invariant from 'tiny-invariant'
 import { MainRootState, Filter } from './../types'
 import { action } from 'typesafe-actions'
 import { RequestData, ResponseData } from '../types'
-import axios, { AxiosRequestConfig } from 'axios'
+import fetch from 'isomorphic-unfetch'
 import warning from 'tiny-warning'
+import { getFilterById } from './reducer'
 export const setRequest = (requestId: string, config: RequestData) =>
   action('SET_REQUEST', { requestId, config })
 
@@ -45,12 +46,17 @@ export const execRequest = (requestId: string) => {
         console.log('dev only, url details:', url)
       }
 
-      const axiosReponse = await axios.get(url)
+      const filter = getFilterById('first', 'firstFilter', getState())
+      console.log('filter label:', filter ? filter.label : 'nofilter')
+
+      const fetched = await fetch(filter ? url + filter.label : url)
+      const response = await fetched.json()
+      console.log('Fetched json:', response)
 
       const successResponse: ResponseData = {
         requestId: requestId,
         status: 'COMPLETED',
-        data: axiosReponse.data
+        data: response
       }
 
       dispatch(processResponse(requestId, successResponse))

@@ -1,5 +1,8 @@
 import React, { useRef } from 'react'
-import { Provider, useStore, shallowEqual, useSelector } from 'react-redux'
+import shallowEqual from 'react-redux/es/utils/shallowEqual'
+import Provider from 'react-redux/es/components/Provider'
+import { useStore } from 'react-redux/es/hooks/useStore'
+import { useSelector } from 'react-redux/es/hooks/useSelector'
 // import invariant from 'tiny-invariant';
 import warning from 'tiny-warning'
 
@@ -40,6 +43,17 @@ export function useResponse(requestId: string): { response: ResponseData } {
   return { response }
 }
 
+/**
+ *
+ * Testing documentation build
+ *
+ * @export
+ * @param {string} requestId
+ * @param {string} filterId
+ * @param {Filter} [initValue]
+ * @param {any[]} [initDeps]
+ * @returns {{ filter: Filter; saveFilter: () => void }}
+ */
 export function useFilter(
   requestId: string,
   filterId: string,
