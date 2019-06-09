@@ -3,7 +3,7 @@ import { MainRootState, Filter } from './../types'
 import { action } from 'typesafe-actions'
 import { RequestData, ResponseData } from '../types'
 import axios, { AxiosRequestConfig } from 'axios'
-
+import { warning } from 'tiny-warning'
 export const setRequest = (requestId: string, config: RequestData) =>
   action('SET_REQUEST', { requestId, config })
 
@@ -15,6 +15,7 @@ export const processResponse = (requestId: string, response: ResponseData) =>
 
 export const execRequest = (requestId: string) => {
   return async (dispatch: any, getState: () => MainRootState) => {
+    console.log('now running execute request')
     const state = getState()
     if (__DEV__) {
       console.log('DEV ONLY LOG = starting execution for requestId', requestId)
@@ -22,7 +23,7 @@ export const execRequest = (requestId: string) => {
       console.log('PROD ONLY LOG = starting execution for requestId', requestId)
     }
     console.log('exec request state=', JSON.stringify(state))
-    invariant(
+    warning(
       !state.esDsl.requests[requestId],
       `Invalid request id: ${requestId} - cannot found in state`
     )

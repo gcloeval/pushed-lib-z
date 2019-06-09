@@ -17,6 +17,7 @@ export class RequestClient {
   }
 
   execute() {
+    console.log('in client class about to execute for request id:', this.requestId)
     this.store.dispatch<any>(execRequest(this.requestId))
   }
 
