@@ -134,7 +134,7 @@
     "typescript": "^3.5.1"
   },
   "dependencies": {
-    "immer": "^3.1.2",
+    "immer": "^9.0.6",
     "isomorphic-unfetch": "^3.0.0",
     "react-redux": "7.1.0-alpha.5",
     "redux": "^4.0.1",
